@@ -38,3 +38,11 @@ It's for `User`. For now, just set up a `create`. For the `create`, receive `dat
 ## `User.test.js`
 
 This will be in `tests` directory.
+
+## [Hooks 🪝](https://sequelize.org/docs/v6/other-topics/hooks/)
+
+We will sanitize our ✉️s (`toLowerCase()`) and encrypt our passwords inside of a `beforeCreate` **hook.** We can repeat this with `beforeUpdate` also.
+
+For encryption, we will need: `npm i bcrypt`.
+
+We'll also need to specify the `saltRounds` as per the [documentation](https://github.com/kelektiv/node.bcrypt.js#async-recommended). For this info ℹ️, we can hide it in our `.env` and read it in our `config.js`.
