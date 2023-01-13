@@ -4,4 +4,8 @@ export default {
   create(payload) {
     return User.create(payload);
   },
+
+  show(username) {
+    return User.findOne({ where: { username } });
+  },
 };
