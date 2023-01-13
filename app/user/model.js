@@ -7,6 +7,12 @@ const User = sequelize.define(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isAlphanumeric: { msg: "Username must be alphanumeric" },
+        notNull: {
+          msg: "Username cannot be null",
+        },
+      },
     },
     password: {
       type: DataTypes.STRING,
