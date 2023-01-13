@@ -4,12 +4,6 @@ import sequelize from "../conn.js";
 const User = sequelize.define(
   "User",
   {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false,
-    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,7 +21,6 @@ const User = sequelize.define(
   {
     timestamps: false,
     sequelize,
-    modelName: "User",
     underscored: true,
   }
 );
