@@ -7,8 +7,7 @@ router.post("/", (req, res) => {
   userController
     .create(req.body)
     .then((user) => {
-      // TODO: ⚠️ Remove password from user object before sending it back to the client.
-      res.status(201).json(user);
+      res.status(201).json({ message: `User ${user.username} created` });
     })
     .catch((err) => {
       if (
