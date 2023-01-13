@@ -7,6 +7,7 @@ router.post("/", (req, res) => {
   userController
     .create(req.body)
     .then((user) => {
+      // TODO: ⚠️ Remove password from user object before sending it back to the client.
       res.status(201).json(user);
     })
     .catch((err) => {
@@ -19,6 +20,21 @@ router.post("/", (req, res) => {
         res.status(500).json({ error: err.message });
       }
     });
+});
+
+router.post("/login", async (req, res) => {
+  // We ask the controller to do stuff that needs access to the database
+  const foundUser = await userController.show(req.body.username);
+
+  // We ask the model to do stuff that doesn't need access to the database
+  // * Use conditional chaining to avoid a TypeError when 'foundUser' is null
+  const isAuth = await foundUser?.isValidPassword(req.body.password);
+
+  if (foundUser && isAuth) {
+    res.json({ message: "Login successful" });
+  } else {
+    res.status(401).json({ error: "Login failed" });
+  }
 });
 
 export default router;
